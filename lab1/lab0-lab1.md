@@ -15,9 +15,9 @@
 首先输入backtrace（"backtrace" 可以用于捕获当前线程的调用堆栈信息，通常包括函数名称、文件名和行号等信息。）发现没有栈信息(显示Backtrace stopped: previous frame identical to this frame (corrupt stack?))，调用栈时发现两个连续的帧是相同的，这通常是不正常的。
 
 可以输入`x/#数字i $pc`来看将要执行的#数字行汇编代码：
-![](vx_images/154165318237250.png =831x)
+![](vx_images/154165318237250.png )
 Grep一下汇编代码发现没有对应的输出：
-![](vx_images/245445418257416.png =831x)
+![](vx_images/245445418257416.png )
 指令：`grep --recursive --line-number --binary-files=without-match "auipc" ./`
 --recursive（或 -r）：递归搜索子目录。
 --line-number（或 -n）：显示匹配行的行号。
@@ -27,9 +27,9 @@ Grep一下汇编代码发现没有对应的输出：
 综合以上信息，说明现在执行的程序既不是已有的C程序，也不是已有的汇编代码（后缀为.S的程序）。可以由上面执行的make命令合理猜测从加电到0x80200000执行的代码在ucore.img。这段程序所实现的功能应该有：切换到保护模式，启用分段机制，把控制权交给ucore操作系统等等。 
 
 在0x80200000设置断点可以看到在./kern/init/entry.S触发了断点。
-![](vx_images/61075518250085.png =831x)
+![](vx_images/61075518250085.png )
 现在backtrace可以正常使用：
-![](vx_images/188375518246640.png =831x)
+![](vx_images/188375518246640.png )
 至此调试联系基本完成。
 
 ### 列出你认为本实验中重要的知识点，以及与对应的OS原理中的知识点，并简要说明你对二者的含义，关系，差异等方面的理解（也可能出现实验中的知识点没有对应的原理知识点）：
@@ -103,7 +103,7 @@ case IRQ_S_TIMER:
 根据这些注释，就可以很简单的完成任务。
 
 实验结果：
-![](vx_images/469630119242394.png =831x)
+![](vx_images/469630119242394.png )
 ![](vx_images/591694713230962.png)
 
 ### 扩展练习 Challenge1：描述与理解中断流程
